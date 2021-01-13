@@ -70,13 +70,14 @@ header #darkMode {
     background: #E6E296;
     display: flex;
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 #gameScreen div {
     width: 25%;
     height: 25%;
     border: solid #927D6A 1px;
+    padding: 0.5rem;
 }
 
 #gameScreen div:hover {
@@ -86,4 +87,13 @@ header #darkMode {
 #gameScreen div img {
     height: 100%;
     width: 100%;
+    border-radius: 1rem;
+}
+
+.false img {
+    opacity: 0;
+}
+
+.true img {
+    opacity: 1;
 }
