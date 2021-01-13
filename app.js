@@ -12,18 +12,35 @@ let gameScreen = document.getElementById('gameScreen');
 // EVENTS BUTTON:
 startButton.addEventListener('click', start);
 
-// START GAME:
+// START GAME & RESET:
+let startcount = true;
+
 function start(){
+    if (startcount === true){
+        for (let nbCase = 1; nbCase <= 16; nbCase++){
+            let createDiv = document.createElement('div');
+            let createimage = document.createElement('img');
+            gameScreen.appendChild(createDiv);
+            createDiv.appendChild(createimage);
 
-    for (let nbCase = 1; nbCase <= 16; nbCase++){
-        let createDiv = document.createElement('div');
-        gameScreen.appendChild(createDiv);
+            let randomCaseClass = Math.floor((Math.random() * card.length));
+            createDiv.classList.add( "card" + card[randomCaseClass] )
+            createimage.src = "card" + card[randomCaseClass] + ".PNG";
 
-        let randomCaseClass = Math.floor((Math.random() * card.length));
-        createDiv.classList.add( "card" + card[randomCaseClass] )
-        console.log("card"+card[randomCaseClass]);
+            console.log("card"+card[randomCaseClass]);
 
-        
+            startButton.innerHTML = "Restart";
+            startcount = false;
+        }
+    }
+
+    else if (startcount === false){
+        for (let nbCase = 1; nbCase <= 16; nbCase++){
+            gameScreen.innerHTML = "";
+
+            startcount = true;
+            start();
+        }
     }
 
 }
