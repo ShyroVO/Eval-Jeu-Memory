@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 62.5%;
+}
+/* DAY: green: #D0E09D - pink1: #FFE6C9 - pink2: #E8AFA0 - lightgreen: #E6E296 - brown: #927D6A
+DARK: back: #222831 - darkblue: #30475e - orange: #f2a365 - grey: #ececec */
+
+/* HEADER: */
+header {
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    background: #E6E296;
+    text-align: right;
+    text-shadow: white 0 0 2rem;
+    align-items: center;
+}
+
+header div {
+    width: 20%;
+    padding: 0.7rem;
+}
+
+header #title {
+    width: 55%;
+    color: #927D6A;
+
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+header button{
+    padding: 0.5rem;
+    border: solid #927D6A 1px;
+    color: #927D6A;
+}
+
+header #startGame {
+    width: 4rem;
+    border-radius: 1rem;
+}
+
+header #startGame:hover, header #darkMode:hover {
+    background: #FFE6C9;
+}
+
+header #darkMode {
+    border-radius: 50%;
+}
+
+/* GAME SCREEN: */
+#contenue {
+    background: #927D6A;
+    width: 100%;
+    height: 40rem;
+    padding: 2rem;
+}
+
+#gameScreen {
+    width: 70%;
+    height: 70%;
+    background: #E6E296;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+#gameScreen div {
+    width: 25%;
+    height: 25%;
+    border: solid #927D6A 1px;
+}
