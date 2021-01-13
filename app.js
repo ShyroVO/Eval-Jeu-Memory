@@ -6,7 +6,8 @@ let round = 2;
 
 // LET:
 let startButton = document.getElementById('startGame');
-let cases = document.g
+let scoreScreen = document.getElementById("score");
+let score = 0;
 
 //LET SCREEN:
 let gameScreen = document.getElementById('gameScreen');
@@ -46,16 +47,12 @@ function start(){
                     compteur = 1;
                     bouclePlacements();
                 }
-
                 startButton.innerHTML = "Restart";
                 startcount = false;
-
             }
-
         }
 // Search for complete case:
         bouclePlacements();
-
     }
 
 // Reset:
@@ -68,43 +65,75 @@ function start(){
             start();
         }
     }
-
     cardSelect();
-
 }
 
 // Select card:
-function cardSelect (){
-    let cards = document.getElementsByClassName('cards');
-    let cardsSelections = [];
-    console.log(cards.length);
+let cards = document.getElementsByClassName('cards');
+let cardsSelections = [];
+let cardsSelected = [];
 
+function cardSelect (){
     for (let card of cards){
         card.addEventListener('click', function (){
-        console.log('test');
-
-            if (round !== 0) {
-
+            if (round  !== 0) {
                 if (card.classList.contains("false")) {
                     card.classList.remove("false");
                     card.classList.add("true");
-
                     cardsSelections.push(card.classList);
-                    console.log(cardsSelections);
                     round--;
-                }
+                    cardsSelected.push(card.id);
 
-                else if (round === 0){
-                    if (cardsSelections[0] === cardsSelections[1]){
+                    if (round === 0) {
+                        if (cardsSelections[0][0] === cardsSelections[1][0]) {
+                            score++;
+                            scoreScreen.innerHTML = score;
 
+                            cardsSelections.splice(0, cardsSelections.length);
+                            cardsSelected.splice(0, cardsSelected.length);
+                            round = 2;
+// If Victory 4s for reset game:
+                            if (score === 8){
+                                victory();
+                                setTimeout(function (){
+                                    startcount = false;
+                                    score = 0;
+                                    start();
+                                }, 4000);
+                            }
+                        }
+
+                        else {
+                            setTimeout(function (){
+                                document.getElementById(cardsSelected[0]).classList.add('false');
+                                document.getElementById(cardsSelected[1]).classList.add('false');
+                                document.getElementById(cardsSelected[0]).classList.remove('true');
+                                document.getElementById(cardsSelected[1]).classList.remove('true');
+
+                                cardsSelections.splice(0, cardsSelections.length);
+                                cardsSelected.splice(0, cardsSelected.length);
+
+                                round = 2;
+                            }, 1000);
+
+                        }
                     }
                 }
-
             }
-
-
-
         })
     }
-
 }
+// Victory message:
+function victory(){
+    let createDiv = document.createElement('div')
+    gameScreen.appendChild(createDiv);
+    createDiv.style.position = "absolute";
+    createDiv.style.background = "#D0E09D";
+    createDiv.style.color = "#927D6A";
+    createDiv.style.width = "62%";
+    createDiv.style.height = "67%";
+    createDiv.style.textAlign = "center";
+    createDiv.style.fontSize = "5rem";
+    createDiv.innerHTML = "BRAVO !";
+}
+
