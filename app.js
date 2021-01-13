@@ -20,6 +20,7 @@ let startcount = true;
 
 function start(){
     let identifiant = 0;
+    score = 0;
 
     if (startcount === true){
         let cardRandom = Array.from(card);
@@ -95,11 +96,6 @@ function cardSelect (){
 // If Victory 4s for reset game:
                             if (score === 8){
                                 victory();
-                                setTimeout(function (){
-                                    startcount = false;
-                                    score = 0;
-                                    start();
-                                }, 4000);
                             }
                         }
 
@@ -125,15 +121,36 @@ function cardSelect (){
 }
 // Victory message:
 function victory(){
+    gameScreen.innerHTML = "";
     let createDiv = document.createElement('div')
     gameScreen.appendChild(createDiv);
-    createDiv.style.position = "absolute";
     createDiv.style.background = "#D0E09D";
     createDiv.style.color = "#927D6A";
-    createDiv.style.width = "62%";
-    createDiv.style.height = "67%";
+    createDiv.style.width = "100%";
+    createDiv.style.height = "100%";
     createDiv.style.textAlign = "center";
     createDiv.style.fontSize = "5rem";
     createDiv.innerHTML = "BRAVO !";
+
+    setTimeout(function (){
+        startcount = false;
+        window.location.href="scorePage.html";
+    }, 2000);
 }
 
+// Dark mode (test version):
+let option = 0
+let style = document.getElementById('style');
+
+document.getElementById('darkMode').addEventListener('click', function (){
+    if (option === 0){
+        style.href = "styleDark.css";
+        option = 1;
+    }
+    else {
+        style.href = "style.css";
+        option = 0;
+    }
+})
+
+// DARK: black: #222831 - darkblue: #30475e - orange: #f2a365 - grey: #ececec */
